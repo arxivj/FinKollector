@@ -12,12 +12,12 @@ spring:
     pathmatch:
       matching-strategy: ant_path_matcher
   kafka:
-    topic:
-      name: stock-list
+#    topic:
+#      name: stock-list
     consumer:
       bootstrap-servers: host.docker.internal:9092
       group-id: stock-price-consumer
-      auto-offset-reset: earliest
+      auto-offset-reset: latest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
     producer:
@@ -34,3 +34,6 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
+
+#api:
+#  url: https://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo?your_parameters_here

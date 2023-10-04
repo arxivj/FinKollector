@@ -14,19 +14,23 @@ import org.springframework.web.client.RestTemplate
 class ProducerService(
     private val restTemplate: RestTemplate,
     var kafkaTemplate: KafkaTemplate<String, String>,
-    val kafkaProperties: KafkaProperties,
-    val apiProperties: ApiProperties
+//    val kafkaProperties: KafkaProperties,
+//    val apiProperties: ApiProperties
 ) {
         private val logger = LoggerFactory.getLogger(ProducerService::class.java)
-    @PostConstruct
-    fun init() {
-        fetchStockData()
+//    @PostConstruct
+//    fun init() {
+//        fetchStockData()
+//    }
+
+    companion object {
+        private const val API_URL = "https://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo?your_parameters_here"
     }
 
     @Scheduled(cron = "*/5 * * * * ?")
     fun fetchStockData() {
         try {
-            val response: ResponseEntity<String> = restTemplate.getForEntity(apiProperties.url, String::class.java)
+            val response: ResponseEntity<String> = restTemplate.getForEntity(API_URL, String::class.java)
             val stockData = response.body
 
             // 위 stockData로 topic 발행
@@ -40,7 +44,7 @@ class ProducerService(
     }
 
     fun publishTopic(data: String) {
-        kafkaTemplate.send(kafkaProperties.name, data)
+        kafkaTemplate.send("stock-list",data)
         logger.info("Data sent to topic $data")
     }
 
