@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter
 
 @RestController
 @RequestMapping("/kafka")
-class StockController() {
+class KafkaStockController() {
 
     data class Stock(
         val ticker: String,
@@ -25,7 +25,7 @@ class StockController() {
         val date: String
     )
 
-    @GetMapping("/create-json")
+    @GetMapping("/create-json") // 전체 json 데이터에서 날짜별 json 데이터를 생성해주는 메서드
     fun createJson(){
         val objectMapper = jacksonObjectMapper()
 

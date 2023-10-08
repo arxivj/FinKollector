@@ -4,9 +4,7 @@ package com.miniproject.finkollector.domain.kafka.producer
 //import com.miniproject.finkollector.domain.kafka.KafkaProperties
 import jakarta.annotation.PostConstruct
 import org.slf4j.LoggerFactory
-import org.springframework.http.ResponseEntity
 import org.springframework.kafka.core.KafkaTemplate
-import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
 import java.io.File
@@ -14,13 +12,13 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 @Service // 외부 API에 주기적으로 시세 데이터를 요청 후 받아와서 topic 발행
-class ProducerService(
+class KafkaProducerService(
     private val restTemplate: RestTemplate,
     var kafkaTemplate: KafkaTemplate<String, String>,
 //    val kafkaProperties: KafkaProperties,
 //    val apiProperties: ApiProperties
 ) {
-        private val logger = LoggerFactory.getLogger(ProducerService::class.java)
+        private val logger = LoggerFactory.getLogger(KafkaProducerService::class.java)
 //    @PostConstruct
 //    fun init() {
 //        fetchStockData()

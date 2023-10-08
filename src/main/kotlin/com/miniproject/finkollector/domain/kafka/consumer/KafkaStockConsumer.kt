@@ -1,17 +1,17 @@
 package com.miniproject.finkollector.domain.kafka.consumer
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.miniproject.finkollector.domain.kafka.entity.StockEntity
-import com.miniproject.finkollector.domain.kafka.entity.StockRepository
+import com.miniproject.finkollector.domain.stock.entity.StockEntity
+import com.miniproject.finkollector.domain.stock.entity.StockRepository
 import org.slf4j.LoggerFactory
 import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.stereotype.Service
 
 @Service
-class StockConsumer(private val stockRepository: StockRepository) {
+class KafkaStockConsumer(private val stockRepository: StockRepository) {
 
     companion object {
-        private val logger = LoggerFactory.getLogger(StockConsumer::class.java)
+        private val logger = LoggerFactory.getLogger(KafkaStockConsumer::class.java)
     }
 
     @KafkaListener(topics = ["stock-list"], groupId = "stock-data")
