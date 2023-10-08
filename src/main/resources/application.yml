@@ -15,8 +15,8 @@ spring:
     pathmatch:
       matching-strategy: ant_path_matcher
   kafka:
-#    topic:
-#      name: stock-list
+    #    topic:
+    #      name: stock-list
     consumer:
       bootstrap-servers: host.docker.internal:9092
       group-id: stock-data
@@ -37,6 +37,13 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
+        show_sql: true
+        format_sql: true
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql: TRACE
 
 #api:
 #  url: https://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo?your_parameters_here
