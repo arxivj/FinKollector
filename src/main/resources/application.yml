@@ -8,6 +8,9 @@ server:
       force: true
 
 spring:
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
@@ -16,7 +19,7 @@ spring:
 #      name: stock-list
     consumer:
       bootstrap-servers: host.docker.internal:9092
-      group-id: stock-price-consumer
+      group-id: stock-data
       auto-offset-reset: latest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
