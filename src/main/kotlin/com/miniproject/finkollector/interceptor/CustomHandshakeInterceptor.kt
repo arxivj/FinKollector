@@ -1,4 +1,4 @@
-package com.miniproject.interceptor
+package com.miniproject.finkollector.interceptor
 
 import org.springframework.http.server.ServerHttpRequest
 import org.springframework.http.server.ServerHttpResponse

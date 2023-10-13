@@ -1,7 +1,7 @@
 package com.miniproject.finkollector.config
 
 import com.miniproject.finkollector.realtimealert.handler.AlertWebSocketHandler
-import com.miniproject.interceptor.CustomHandshakeInterceptor
+import com.miniproject.finkollector.interceptor.CustomHandshakeInterceptor
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.socket.config.annotation.EnableWebSocket
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer
