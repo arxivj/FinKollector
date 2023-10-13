@@ -32,6 +32,7 @@ dependencies {
     testImplementation("org.springframework.kafka:spring-kafka-test")
     implementation("javax.validation:validation-api:2.0.1.Final")
     implementation("org.hibernate.validator:hibernate-validator:6.0.21.Final")
+    implementation("org.springframework.boot:spring-boot-starter-websocket")
 }
 
 tasks.withType<KotlinCompile> {
