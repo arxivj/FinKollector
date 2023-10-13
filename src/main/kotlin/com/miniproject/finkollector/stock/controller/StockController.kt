@@ -1,14 +1,17 @@
 package com.miniproject.finkollector.stock.controller
 
+import PredictionService
 import com.miniproject.finkollector.stock.service.StockService
 import com.miniproject.finkollector.stock.dto.RecommendedStockDto
 import com.miniproject.finkollector.stock.dto.StockRequestDto
 import com.miniproject.finkollector.stock.domain.StockEntity
+import com.miniproject.finkollector.stock.dto.Prediction.PredictionRequest
+import com.miniproject.finkollector.stock.dto.Prediction.PredictionResponse
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/stock")
-class StockController(private val stockService: StockService) {
+class StockController(private val stockService: StockService, private val predictionService: PredictionService) {
     @PostMapping("/chart")
     fun getStocksByTickerAndDate(@RequestBody request: StockRequestDto): List<StockEntity> {
         return stockService.getStockDataByTickerAndDateRange(request)
@@ -23,7 +26,6 @@ class StockController(private val stockService: StockService) {
 
     @GetMapping("/top5")
     fun recommendedStocks(): List<RecommendedStockDto> {
-
         val thumbImg = mapOf(
             "AAPL" to "https://i.namu.wiki/i/d160Dqec9tDdXjSJhO_QWYqUp2DHO2B-aKvtCRxjdMwxoqSad8McPkKWnBCuWutazN79tv_w6yNZqgTZ_RBElg.svg",
             "MSFT" to "https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg",
@@ -31,8 +33,6 @@ class StockController(private val stockService: StockService) {
             "AMZN" to "https://upload.wikimedia.org/wikipedia/commons/4/4a/Amazon_icon.svg",
             "MRK" to "https://www.msd-korea.com/wp-content/themes/mhh-mhh2-mcc-theme/images/msd-logo.svg"
         )
-
-
         return listOf(
             RecommendedStockDto("AAPL", "Apple Inc.", 150.00, 2.5, thumbImg["AAPL"] ?: ""),
             RecommendedStockDto("MSFT", "Microsoft Corp.", 250.00, 1.2, thumbImg["MSFT"] ?: ""),
@@ -40,6 +40,13 @@ class StockController(private val stockService: StockService) {
             RecommendedStockDto("AMZN", "Amazon.com Inc.", 3400.00, 3.0, thumbImg["AMZN"] ?: ""),
             RecommendedStockDto("MRK", "MRK Inc.", 650.00, 4.5, thumbImg["MRK"] ?: "")
         )
+    }
+
+    /** 주식 예측 서비스 */
+    @PostMapping("/predict")
+    fun predictStockPrice(@RequestBody request: PredictionRequest): PredictionResponse {
+        // AI한테 예측값을 받아오는 서비스로직
+        return predictionService.getPrediction(request)
     }
 
 }
