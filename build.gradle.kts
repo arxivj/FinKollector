@@ -33,6 +33,11 @@ dependencies {
     implementation("javax.validation:validation-api:2.0.1.Final")
     implementation("org.hibernate.validator:hibernate-validator:6.0.21.Final")
     implementation("org.springframework.boot:spring-boot-starter-websocket")
+    implementation("commons-codec:commons-codec:1.16.0")
+    implementation("org.springframework.boot:spring-boot-starter-data-redis")
+    implementation("org.springframework.boot:spring-boot-starter-mail")
+    implementation("org.springframework.retry:spring-retry:2.0.3")
+    implementation("org.springframework.boot:spring-boot-starter-aop:3.1.2")
 }
 
 tasks.withType<KotlinCompile> {

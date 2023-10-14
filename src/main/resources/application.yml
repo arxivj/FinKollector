@@ -7,16 +7,19 @@ server:
       enabled: true
       force: true
 
+# Jackson Configuration
 spring:
   jackson:
     serialization:
       write-dates-as-timestamps: false
+
+  # Spring MVC Configuration
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+
+  # Kafka Configuration
   kafka:
-    #    topic:
-    #      name: stock-list
     consumer:
       bootstrap-servers: host.docker.internal:9092
       group-id: stock-data
@@ -27,10 +30,14 @@ spring:
       bootstrap-servers: host.docker.internal:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+  # Database Configuration
   datasource:
     url: jdbc:mysql://localhost:3306/finKollector
     username: root
     password: 1234
+
+  # JPA Configuration
   jpa:
     hibernate:
       ddl-auto: update
@@ -40,10 +47,40 @@ spring:
         show_sql: true
         format_sql: true
 
+  # Redis Configuration
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: 1234
+
+# Email Configuration
+  mail:
+    host: smtp.gmail.com
+    port: 465
+    username: xivpark1110@gmail.com
+    password: cbpzbxqraippnelg
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            required: true
+            enable: true
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+            fallback: false
+          port: 465
+          timeout: 5000
+
+
+# Logging Configuration
 logging:
   level:
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql: TRACE
 
-#api:
-#  url: https://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo?your_parameters_here
+# Email Code Expiration-time Configurations
+email:
+  code:
+    expiration-time: 10
