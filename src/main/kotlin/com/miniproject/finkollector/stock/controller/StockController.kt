@@ -1,13 +1,14 @@
 package com.miniproject.finkollector.stock.controller
 
-import PredictionService
 import com.miniproject.finkollector.stock.service.StockService
+import com.miniproject.finkollector.stock.service.PredictionService
 import com.miniproject.finkollector.stock.dto.RecommendedStockDto
 import com.miniproject.finkollector.stock.dto.StockRequestDto
 import com.miniproject.finkollector.stock.domain.StockEntity
 import com.miniproject.finkollector.stock.dto.Prediction.PredictionRequest
 import com.miniproject.finkollector.stock.dto.Prediction.PredictionResponse
 import org.springframework.web.bind.annotation.*
+
 
 @RestController
 @RequestMapping("/stock")

@@ -1,3 +1,5 @@
+package com.miniproject.finkollector.stock.service
+
 import com.miniproject.finkollector.stock.dto.Prediction.PredictionRequest
 import com.miniproject.finkollector.stock.dto.Prediction.PredictionResponse
 import org.springframework.stereotype.Service
