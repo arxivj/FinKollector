@@ -7,7 +7,6 @@ import com.miniproject.finkollector.member.domain.OAuthProvider
 import com.miniproject.finkollector.member.domain.Role
 import com.miniproject.finkollector.member.dto.JoinRequest
 import com.miniproject.finkollector.member.repository.MemberRepository
-import com.miniproject.finkollector.model.Email
 import com.miniproject.finkollector.util.PasswordEncoder.generateSalt
 import com.miniproject.finkollector.util.PasswordEncoder.hashPassword
 import org.springframework.stereotype.Service
@@ -68,7 +67,7 @@ class MemberService(
         val hashedPassword = hashPassword(password, salt)
 
         return Member(
-            email = Email(email),
+            email = email,
             password = hashedPassword,
             salt = salt,
             roles = hashSetOf(Role.ROLE_USER),

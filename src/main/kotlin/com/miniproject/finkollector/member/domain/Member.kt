@@ -1,6 +1,5 @@
 package com.miniproject.finkollector.member.domain
 
-import com.miniproject.finkollector.model.Email
 import com.miniproject.finkollector.model.MobileNumber
 import jakarta.persistence.*
 
@@ -15,12 +14,13 @@ class Member(
     val id: Long? = null,
 
     // 회원의 이메일 정보 (Email 객체로 임베디드됨)
-    @Embedded
-    @AttributeOverride(
-        name = "value",
-        column = Column(name = "email", nullable = false, unique = true, updatable = false, length = 50)
-    )
-    val email: Email,
+//    @Embedded
+//    @AttributeOverride(
+//        name = "value",
+//        column = Column(name = "email", nullable = false, unique = true, updatable = false, length = 50)
+//    )
+    @Column(name = "email", nullable = false, unique = true, updatable = false, length = 50)
+    val email: String,
 
     // 비밀번호 (해시 처리됨)
     @Column(nullable = false)
