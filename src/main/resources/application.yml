@@ -14,9 +14,9 @@ spring:
       write-dates-as-timestamps: false
 
   # Spring MVC Configuration
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
+#  mvc:
+#    pathmatch:
+#      matching-strategy: ant_path_matcher
 
   # Kafka Configuration
   kafka:
@@ -83,3 +83,11 @@ logging:
 email:
   code:
     expiration-time: 10
+
+# Swagger Configuration
+springdoc:
+  api-docs:
+    path: /api-docs
+  show-actuator: true
+  swagger-ui:
+    path: /swagger-ui.html

@@ -39,6 +39,7 @@ dependencies {
     implementation("org.springframework.retry:spring-retry:2.0.3")
     implementation("org.springframework.boot:spring-boot-starter-aop:3.1.2")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
 }
 
 tasks.withType<KotlinCompile> {
