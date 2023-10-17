@@ -33,7 +33,7 @@ spring:
 
   # Database Configuration
   datasource:
-    url: jdbc:mysql://localhost:3306/finKollector
+    url: jdbc:mysql://localhost:3306/finkollector
     username: root
     password: 1234
 
