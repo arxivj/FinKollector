@@ -5,8 +5,10 @@ import com.miniproject.finkollector.stock.service.PredictionService
 import com.miniproject.finkollector.stock.dto.RecommendedStockDto
 import com.miniproject.finkollector.stock.dto.StockRequestDto
 import com.miniproject.finkollector.stock.domain.StockEntity
+import com.miniproject.finkollector.stock.domain.StockPriceEntity
 import com.miniproject.finkollector.stock.dto.Prediction.PredictionRequest
 import com.miniproject.finkollector.stock.dto.Prediction.PredictionResponse
+import com.miniproject.finkollector.stock.dto.StockPriceRequest
 import org.springframework.web.bind.annotation.*
 
 
@@ -120,7 +122,7 @@ class StockController(private val stockService: StockService, private val predic
         )
     }
 
-    @GetMapping("/stock-exchange")
+    @GetMapping("/exchange")
     fun getStockExchange(): List<Map<String, Any>> {
         return listOf(
             mapOf(
@@ -190,39 +192,15 @@ class StockController(private val stockService: StockService, private val predic
     }
 
 
-    @GetMapping("/stock-price")
-    fun getStockPrice(): List<Map<String, Any>> {
-        return listOf(
-            mapOf(
-                "date" to "2023-10-23",
-                "ticker" to "AAPL",
-                "closing" to 150,
-                "highest" to 155,
-                "open" to 149,
-                "lowest" to 148,
-                "upt_closing" to 149,
-                "upt_open" to 148,
-                "upt_highest" to 154,
-                "upt_lowest" to 147,
-                "volume" to 1000000L
-            ),
-            mapOf(
-                "date" to "2023-10-23",
-                "ticker" to "MSFT",
-                "closing" to 250,
-                "highest" to 255,
-                "open" to 248,
-                "lowest" to 247,
-                "upt_closing" to 249,
-                "upt_open" to 247,
-                "upt_highest" to 253,
-                "upt_lowest" to 246,
-                "volume" to 800000L
-            )
-        )
+    @PostMapping("/price")
+    fun getStockPrice(@RequestBody request: StockPriceRequest): List<StockPriceEntity> {
+        return stockService.getStockPriceDataByTickerAndDateRange(request)
     }
 
-
+    @GetMapping("/savejson")
+    fun loadData() {
+        stockService.saveJsonToDb()
+    }
 
 
 }
