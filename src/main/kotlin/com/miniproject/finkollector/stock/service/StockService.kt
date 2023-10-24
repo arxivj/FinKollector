@@ -3,12 +3,15 @@ package com.miniproject.finkollector.stock.service
 import com.miniproject.finkollector.stock.domain.StockEntity
 import com.miniproject.finkollector.stock.dto.StockRequestDto
 import com.miniproject.finkollector.stock.repository.StockRepository
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
+import org.springframework.web.client.RestTemplate
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 @Service
 class StockService(private val stockRepository: StockRepository) {
+
     fun getStockDataByTickerAndDateRange(request: StockRequestDto): List<StockEntity> {
         return stockRepository.findByTickerAndDateBetween(request.ticker, request.startDate, request.endDate)
     }
