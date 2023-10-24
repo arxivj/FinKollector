@@ -91,3 +91,10 @@ springdoc:
   show-actuator: true
   swagger-ui:
     path: /swagger-ui.html
+
+
+# IEX Cloud
+iex:
+  token: pk_c04721f64d4a45ce9985744ccc5d8c38
+  endpoint: https://cloud.iexapis.com/stable
+
