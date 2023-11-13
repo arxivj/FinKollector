@@ -13,14 +13,9 @@ class Member(
     @Column(name = "id", updatable = false)
     val id: Long? = null,
 
-    // 회원의 이메일 정보 (Email 객체로 임베디드됨)
-//    @Embedded
-//    @AttributeOverride(
-//        name = "value",
-//        column = Column(name = "email", nullable = false, unique = true, updatable = false, length = 50)
-//    )
-    @Column(name = "email", nullable = false, unique = true, updatable = false, length = 50)
-    val email: String,
+    //TODO: 이메일 주소를 변경할 때 보안 로그를 남길 예정, 이메일 변경시 사용자에게 이를 알리는 알림 메일 전송 예정
+    @Column(name = "email", nullable = false, unique = true, updatable = true, length = 50)
+    var email: String,
 
     // 비밀번호 (해시 처리됨)
     @Column(nullable = false)
